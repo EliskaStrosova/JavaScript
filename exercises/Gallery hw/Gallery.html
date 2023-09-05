@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Slideshow Gallery</title>
+    <style>
+
+      * {
+        background-color: black;
+      }
+
+        .gallery {
+            text-align: center;
+            position: relative;
+        }
+        .main-image {
+            width: 950px; 
+            height: 650px; 
+        }
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .thumbnail {
+            width: 150px; 
+            height: 120px; 
+            cursor: pointer;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 50px;
+            color: rgb(115, 102, 102);
+        }
+        .arrow.left {
+            left: 50px;
+        }
+        .arrow.right {
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <img class="main-image" id="mainImage" src="img1.webp" alt="Image 1">
+        <div class="thumbnails">
+            <img class="thumbnail" src="img1.webp" alt="Image 1" onclick="showImage(1)">
+            <img class="thumbnail" src="img2.jpg" alt="Image 2" onclick="showImage(2)">
+            <img class="thumbnail" src="img3.jpg" alt="Image 3" onclick="showImage(3)">
+            <img class="thumbnail" src="img4.png" alt="Image 4" onclick="showImage(4)">
+            <img class="thumbnail" src="img5.jpg" alt="Image 5" onclick="showImage(5)">
+            <img class="thumbnail" src="img6.jpg" alt="Image 6" onclick="showImage(6)">
+            <img class="thumbnail" src="img7.webp" alt="Image 7" onclick="showImage(7)">
+            <img class="thumbnail" src="img8.jpg" alt="Image 8" onclick="showImage(8)">
+        </div>
+        <div class="arrow left" onclick="prevImage()">&#9664;</div>
+        <div class="arrow right" onclick="nextImage()">&#9654;</div>
+    </div>
+
+    <script>
+        // Image data
+        const images = [
+            "img1.webp",
+            "img2.jpg",
+            "img3.jpg",
+            "img4.png",
+            "img5.jpg",
+            "img6.jpg",
+            "img7.webp",
+            "img8.jpg"
+        ];
+
+        let currentImageIndex = 0;
+        const mainImage = document.getElementById("mainImage");
+
+        function showImage(index) {
+            currentImageIndex = index - 1;
+            mainImage.src = images[currentImageIndex];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            mainImage.src = images[currentImageIndex];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            mainImage.src = images[currentImageIndex];
+        }
+
+       
+        showImage(1);
+    </script>
+</body>
+</html>
